@@ -65,7 +65,7 @@ function addSubToSpan(sub, subsSpan) {
             var cleanTagsPattern   = /<(?!br\s*\/?)[^>]+>/g;
             var addSpanTagsPattern = /([a-zA-Z'-]+)/g;
             var formatted = lines[lineIndex].replace(cleanTagsPattern, '')
-                .replace('<br/>', ' ')
+                .replace(new RegExp('<br/>', 'g'), ' ')
                 .replace(addSpanTagsPattern, '<span><span class=\'word\'>$1</span></span>');
             $(subsSpan).append(formatted);
         }
