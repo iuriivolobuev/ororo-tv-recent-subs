@@ -48,6 +48,14 @@ function showExtSubs() {
 function clearExtSubs() {
     $('.ext-subs').remove();
 }
+function toggleRecentSubs() {
+    var extSubs = $('.ext-subs');
+    if (extSubs.css('display') == 'none') {
+        extSubs.show();
+    } else {
+        extSubs.hide();
+    }
+}
 function showNativeSubs() {
     $('div.vjs-subtitles.vjs-text-track').show();
 }

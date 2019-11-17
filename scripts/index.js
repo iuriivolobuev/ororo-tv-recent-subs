@@ -1,5 +1,14 @@
 setupLogging(false);
 
+$(document).ready(function(e) {
+    $(document).on('keydown', function(e) {
+        // Shift+S
+        if (83 == e.which && e.shiftKey) {
+            toggleRecentSubs();
+        }
+    })
+})
+
 $(document).bind('DOMNodeInserted', function(e) {
     var element = $(e.target);
     if (element.is('span.vjs-control-text')) {
