@@ -23,8 +23,6 @@
       "js": [
         "scripts/lib/jquery-3.4.1.min.js",
         "scripts/lib/subtitle.bundle.js",
-        "scripts/common-utils.js",
-        "scripts/subs-utils.js",
         "scripts/index.js"
       ]
     }
