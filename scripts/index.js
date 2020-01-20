@@ -84,13 +84,12 @@ var RecentSubsExt = {
             return subsSpan;
         },
         addSubToSpan: function(sub, subsSpan) {
-            var lines = sub.text.split('\n');
+            var lines = sub.text.replace(new RegExp('\n', 'g'), '<br/>').split('<br/>');
             for (var i = 0; i < lines.length; i++) {
                 if (i > 0) subsSpan.appendChild(RecentSubsExt.View.createBr());
                 var tagPattern  = /<(?!br\s*\/?)[^>]+>/g;
                 var wordPattern = /([a-zA-Z'-]+)/g;
                 var formatted = lines[i].replace(tagPattern, '')
-                    .replace(new RegExp('<br/>', 'g'), ' ')
                     .replace(wordPattern, '<span><span class=\'word\'>$1</span></span>');
                 $(subsSpan).append(formatted);
             }
