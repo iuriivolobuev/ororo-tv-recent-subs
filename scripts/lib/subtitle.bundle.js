@@ -1,3 +1,4 @@
+/*! subtitle.js | (c) Guilherme Santiago | https://github.com/gsantiago/subtitle.js/blob/master/LICENSE */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory();
