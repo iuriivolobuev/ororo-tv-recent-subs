@@ -16,3 +16,14 @@ not to lose the meaning of the movie and be in the context every time.
 [ORORO.TV Recent Subtitles](https://chrome.google.com/webstore/detail/ororotv-recent-subtitles/aebfghlgckigccknbckmejjnlaloeeei?hl=en)
 extension for Chrome allows watching without subtitles showing them on pause
 and making possible just look through them to catch the sense.
+
+### Screenshots
+
+The movie is playing:
+![Playing](_images/playing.png)
+
+The movie is on pause:
+![Pause](_images/pause.png)
+
+By the way, **Shift+S** shortcut can be used to toggle subtitles when the movie is on pause.
+It may be useful in case when needed to view the frame in details.
