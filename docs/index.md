@@ -20,10 +20,10 @@ and making possible just look through them to catch the sense.
 ### Screenshots
 
 The movie is playing:
-![Playing](_assets/images/playing.png)
+![Playing](assets/images/playing.png)
 
 The movie is on pause:
-![Pause](_assets/images/pause.png)
+![Pause](assets/images/pause.png)
 
 By the way, **_Shift+S_** shortcut can be used to toggle subtitles when the movie is on pause.
 It may be useful in case when needed to view the frame in details.
