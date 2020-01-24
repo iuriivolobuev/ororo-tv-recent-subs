@@ -17,7 +17,7 @@ and to do backwards jumps when needed, but it takes extra time.
 
 [ORORO.TV Recent Subtitles](https://chrome.google.com/webstore/detail/ororotv-recent-subtitles/aebfghlgckigccknbckmejjnlaloeeei?hl=en)
 extension for Chrome allows watching without subtitles showing recent ones on pause
-and making possible just look through them to catch the sense.
+and making possible just looking through them to catch the sense.
 
 ### Screenshots
 
