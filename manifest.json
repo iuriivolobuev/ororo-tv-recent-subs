@@ -3,7 +3,7 @@
   "version": "1.4",
   "name": "ORORO.TV Recent Subtitles",
   "short_name": "ororo-recent-subs",
-  "description": "Efficient watching movies.",
+  "description": "Efficient watching movies in English.",
   "icons": {
     "16": "images/ororo-icon-16.png",
     "32": "images/ororo-icon-32.png",
