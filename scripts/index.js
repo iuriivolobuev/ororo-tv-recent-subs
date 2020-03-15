@@ -112,7 +112,9 @@ var RecentSubsExt = {
 
     Controller: {
         onPause: function() {
-            var dataId = $('.video-js').get(0).getAttribute('data-id');
+            var elementWithDataId = $('.js-menu-episode.current').get(0);//won't be null if not the single movie (instead there're several episodes)
+            if (elementWithDataId == null) elementWithDataId = $('.video-js').get(0);
+            var dataId = elementWithDataId.getAttribute('data-id');
             if (RecentSubsExt.Model.isLoaded(dataId)) RecentSubsExt.Controller.showRecentSubs();
             else {
                 var parentElement = $(document);
