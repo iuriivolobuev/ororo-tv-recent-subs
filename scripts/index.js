@@ -33,8 +33,11 @@ var RecentSubsExt = {
         getRecentSubs: function(currentTimeInMs, n) {
             var result = [];
             var all = this.currentSubs.filter(function(s) {
-                var timeProportion = (currentTimeInMs - s.start) / (s.end - s.start);
-                return timeProportion >= 0;/*adjust it if needed*/
+                //if start using proportions, don't forget that some corrupt subs may have s.end < s.start,
+                //so needed for example take Math.abs(s.end - s.start) or so..
+                //var timeProportion = (currentTimeInMs - s.start) / (s.end - s.start);
+                //return timeProportion >= 0;/*adjust it if needed*/
+                return currentTimeInMs >= s.start;
             });
             for (var i = 0; i < n; i++) {
                 var index = all.length - i - 1;
