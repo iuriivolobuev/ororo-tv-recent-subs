@@ -65,7 +65,9 @@ var RecentSubsExt = {
             RecentSubsExt.View.clearExtSubs();
             if (recentSubs.length > 0) {
                 RecentSubsExt.View.hideNativeSubs();
-                var subsSpan = RecentSubsExt.View.prepareSubsSpan();
+                var fontSize = localStorage.subSize;
+                if (!fontSize) fontSize = 1;
+                var subsSpan = RecentSubsExt.View.prepareSubsSpan(fontSize);
                 for (var i = 0; i < recentSubs.length; i++) {
                     if (i > 0) {
                         subsSpan.appendChild(RecentSubsExt.View.createBr());
@@ -76,9 +78,9 @@ var RecentSubsExt = {
             }
         },
 
-        prepareSubsSpan: function() {
+        prepareSubsSpan: function(fontSize) {
             var extSubsDiv = RecentSubsExt.View.createDiv('vjs-subtitles vjs-text-track ext-subs');
-            extSubsDiv.style = 'font-size: 1em;';
+            extSubsDiv.style = 'font-size: ' + fontSize + 'em;';
             var subsDiv  = RecentSubsExt.View.createDiv('vjs-tt-cue');
             var subsSpan = RecentSubsExt.View.createSpan('vjs-subs');
             subsDiv.appendChild(subsSpan);
