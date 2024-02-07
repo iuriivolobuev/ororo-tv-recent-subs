@@ -81,6 +81,18 @@ var RecentSubsExt = {
         prepareSubsSpan: function(fontSize) {
             var extSubsDiv = RecentSubsExt.View.createDiv('vjs-subtitles vjs-text-track ext-subs');
             extSubsDiv.style = 'font-size: ' + fontSize + 'em;';
+
+            var closeButtonDiv  = RecentSubsExt.View.createDiv('');
+            var closeButtonSpan = RecentSubsExt.View.createSpan('');
+            closeButtonDiv.appendChild(closeButtonSpan);
+            extSubsDiv.appendChild(closeButtonDiv);
+            closeButtonDiv.style = 'text-align: right;';
+            closeButtonSpan.style = 'font-size: 25px; padding: 10px; color: red; cursor: pointer;';
+            closeButtonSpan.textContent = 'x';
+            closeButtonSpan.onclick = function() {
+                RecentSubsExt.View.toggleExtSubs();
+            }
+
             var subsDiv  = RecentSubsExt.View.createDiv('vjs-tt-cue');
             var subsSpan = RecentSubsExt.View.createSpan('vjs-subs');
             subsDiv.appendChild(subsSpan);
