@@ -1,10 +1,12 @@
-## ORORO.TV Recent Subtitles
+## Say NO to subtitles! (ororo.tv)
 
-[ORORO.TV Recent Subtitles](https://chrome.google.com/webstore/detail/ororotv-recent-subtitles/aebfghlgckigccknbckmejjnlaloeeei?hl=en)
-extension for Chrome allows watching movies on [ORORO.TV](https://ororo.tv/ref/1530022) without subtitles showing recent
-ones on pause just to look at them to catch the sense.
+Shows last dialogs when pausing a video at https://ororo.tv/.
 
-Use **_Shift+S_** shortcut **_to hide / to show_** subtitles when the movie is on pause.
+Helps watch movies WITHOUT subtitles. If you didn't catch some word, just pause and see recent subtitles without winding the movie back.
+
+The extension works only if you're logged in at ororo.tv.
+
+The extension is not created by ororo.tv team, so any questions related to ororo.tv service itself should be asked at their website.
 
 ## License
 

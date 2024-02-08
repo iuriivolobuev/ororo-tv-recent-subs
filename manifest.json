@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "version": "1.10",
+  "version": "1.11",
   "name": "ORORO.TV Recent Subtitles",
   "short_name": "ororo-recent-subs",
   "description": "Efficient watching movies in English.",
