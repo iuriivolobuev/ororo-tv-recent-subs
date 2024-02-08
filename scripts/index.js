@@ -8,7 +8,7 @@ $(document).bind('DOMNodeInserted', function(e) {
 });
 $(document).ready(function(e) {
     $(document).on('keydown', function(e) {
-        if (e.shiftKey && e.which == 83/*Shift+S*/) RecentSubsExt.View.toggleExtSubs();
+        if (e.shiftKey && e.which === 83/*Shift+S*/) RecentSubsExt.View.toggleExtSubs();
     })
 })
 
@@ -17,13 +17,13 @@ var RecentSubsExt = {
         currentSubs  : null,
         currentDataId: null,
 
-        isLoaded: function(dataId) {return this.currentSubs != null && this.currentDataId == dataId;},
+        isLoaded: function(dataId) {return this.currentSubs != null && this.currentDataId === dataId;},
         load    : function(dataId, url, callback) {
             var request = new XMLHttpRequest();
             request.open("GET", url);
             request.send();
             request.onreadystatechange = (e) => {
-                if (request.readyState == 4/*DONE*/) {
+                if (request.readyState === 4/*DONE*/) {
                     this.currentSubs = Subtitle.parse(request.responseText);
                     this.currentDataId = dataId;
                     callback();
@@ -79,14 +79,25 @@ var RecentSubsExt = {
         },
 
         prepareSubsSpan: function(fontSize) {
-            var extSubsDiv = RecentSubsExt.View.createDiv('vjs-subtitles vjs-text-track ext-subs');
-            extSubsDiv.style = 'font-size: ' + fontSize + 'em;';
-            var subsDiv  = RecentSubsExt.View.createDiv('vjs-tt-cue');
-            var subsSpan = RecentSubsExt.View.createSpan('vjs-subs');
-            subsDiv.appendChild(subsSpan);
-            extSubsDiv.appendChild(subsDiv);
-            $('.vjs-text-track-display').first().prepend(extSubsDiv);
-            return subsSpan;
+            document.querySelector('.vjs-text-track-display').insertAdjacentHTML('beforeend', `
+                <div id="subt-root" style="font-size: ${fontSize}em" class="vjs-subtitles vjs-text-track ext-subs">
+                <div style="display: flex; justify-content: end; padding: .5em">
+                  <button id="subs-btn-close">
+                    <svg style="fill: white" xmlns="http://www.w3.org/2000/svg" fill="#000000" height="10px" width="10px" viewBox="0 0 490 490" xml:space="preserve">
+                      <polygon points="456.851,0 245,212.564 33.149,0 0.708,32.337 212.669,245.004 0.708,457.678 33.149,490 245,277.443 456.851,490   489.292,457.678 277.331,245.004 489.292,32.337 "/>
+                    </svg>                    
+                  </button>
+                </div>
+                <div class="vjs-tt-cue">
+                  <span id="subt-subtitles" class="vjs-subs"></span>
+                </div>
+                </div>
+            `);
+            const root = document.querySelector('#subt-root');
+            root.querySelector('#subs-btn-close').onclick = () => {
+                RecentSubsExt.View.toggleExtSubs();
+            }
+            return root.querySelector('#subt-subtitles');
         },
         addSubToSpan: function(sub, subsSpan) {
             var lines = sub.text.replace(new RegExp('\n', 'g'), '<br/>').split('<br/>');
