@@ -1,9 +1,9 @@
 {
   "manifest_version": 3,
   "version": "1.11",
-  "name": "ORORO.TV Recent Subtitles",
+  "name": "Say NO to subtitles! (ororo.tv)",
   "short_name": "ororo-recent-subs",
-  "description": "Efficient watching movies in English.",
+  "description": "Shows last dialogs when pausing a video at https://ororo.tv/.",
   "icons": {
     "16": "images/ororo-icon-16.png",
     "32": "images/ororo-icon-32.png",
