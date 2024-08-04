@@ -1,11 +1,33 @@
-$(document).bind('DOMNodeInserted', function(e) {
-    var element = $(e.target);
-    if (element.is('.vjs-control-text')) {
-        var parentElement = $(element.get(0).parentElement);
-        if      (parentElement.is('.vjs-paused' )) RecentSubsExt.Controller.onPause();
-        else if (parentElement.is('.vjs-playing')) RecentSubsExt.Controller.onPlay();
+const bodyObserver = new MutationObserver((mutationsList, observer) => {
+    for (let mutation of mutationsList) {
+        if (mutation.type === 'childList') {
+            mutation.addedNodes.forEach(node => {
+                if (node.tagName === 'DIV' && node.classList.contains('vjs-control-bar')) {
+                    const playControl = node.getElementsByClassName('vjs-play-control')[0];
+                    const playControlObserver = new MutationObserver((mutationsList, observer) => {
+                        for (let mutation of mutationsList) {
+                            if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+                                if (playControl.classList.contains('vjs-paused')) {
+                                    RecentSubsExt.Controller.onPause();
+                                } else if (playControl.classList.contains('vjs-playing')) {
+                                    RecentSubsExt.Controller.onPlay();
+                                }
+                            }
+                        }
+                    });
+                    const playControlConfig = {attributes: true};
+                    playControlObserver.observe(playControl, playControlConfig);
+                }
+            });
+        }
     }
 });
+const bodyObserverConfig = {
+    childList: true,
+    subtree: true
+};
+bodyObserver.observe(document.body, bodyObserverConfig);
+
 $(document).ready(function(e) {
     $(document).on('keydown', function(e) {
         if (e.shiftKey && e.which === 83/*Shift+S*/) RecentSubsExt.View.toggleExtSubs();

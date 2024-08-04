@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Prepares zip for uploading to chrome web store
+# Prepares zip for uploading to chrome web store (https://chrome.google.com/webstore/devconsole/).
 
 set -e
 
