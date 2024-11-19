@@ -122,7 +122,7 @@ var RecentSubsExt = {
             return root.querySelector('#subt-subtitles');
         },
         addSubToSpan: function(sub, subsSpan) {
-            var lines = sub.text.replace(new RegExp('\n', 'g'), '<br/>').split('<br/>');
+            var lines = sub.text.replace(/{[^}]*}/g, '').replace(new RegExp('\n', 'g'), '<br/>').split('<br/>');
             for (var i = 0; i < lines.length; i++) {
                 if (i > 0) subsSpan.appendChild(RecentSubsExt.View.createBr());
                 var tagPattern  = /<(?!br\s*\/?)[^>]+>/g;
