@@ -59,7 +59,7 @@ var RecentSubsExt = {
                 //so needed for example take Math.abs(s.end - s.start) or so..
                 //var timeProportion = (currentTimeInMs - s.start) / (s.end - s.start);
                 //return timeProportion >= 0;/*adjust it if needed*/
-                return currentTimeInMs >= s.start;
+                return currentTimeInMs >= s.start && s.text != null;
             });
             for (var i = 0; i < n; i++) {
                 var index = all.length - i - 1;
