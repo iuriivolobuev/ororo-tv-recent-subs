@@ -1,38 +1,29 @@
 $(document).ready(function(e) {
-    $(document).on('keydown', function(e) {
-        if (e.shiftKey && e.which === 83/*Shift+S*/) RecentSubsExt.View.toggleExtSubs();
-    });
-
-    const bodyObserver = new MutationObserver((mutationsList, observer) => {
-        for (let mutation of mutationsList) {
-            if (mutation.type === 'childList') {
-                mutation.addedNodes.forEach(node => {
-                    if (node.tagName === 'DIV' && node.classList.contains('vjs-control-bar')) {
-                        const playControl = node.getElementsByClassName('vjs-play-control')[0];
-                        const playControlObserver = new MutationObserver((mutationsList, observer) => {
-                            for (let mutation of mutationsList) {
-                                if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
-                                    if (playControl.classList.contains('vjs-paused')) {
-                                        RecentSubsExt.Controller.onPause();
-                                    } else if (playControl.classList.contains('vjs-playing')) {
-                                        RecentSubsExt.Controller.onPlay();
-                                    }
-                                }
-                            }
-                        });
-                        const playControlConfig = {attributes: true};
-                        playControlObserver.observe(playControl, playControlConfig);
-                    }
-                });
-            }
+    $(document).on('keyup', function(e) {
+        if (e.which === 32/*space*/) {
+            showOrHideSubs(false);
         }
     });
-    const bodyObserverConfig = {
-        childList: true,
-        subtree: true
-    };
-    bodyObserver.observe(document.body, bodyObserverConfig);
+
+    $(document).on('keydown', function(e) {
+        if (e.shiftKey && e.which === 83/*shift+s*/) {
+            RecentSubsExt.View.toggleExtSubs();
+        }
+    });
+
+    $(document).on('mouseup', function(e) {
+        showOrHideSubs(true);
+    });
 })
+
+function showOrHideSubs(inversed) {
+    var paused = $('.vjs-paused').get(0) != null;
+    if (paused && !inversed || !paused && inversed) {
+        RecentSubsExt.Controller.onPause();
+    } else {
+        RecentSubsExt.Controller.onPlay();
+    }
+}
 
 var RecentSubsExt = {
     Model: {
