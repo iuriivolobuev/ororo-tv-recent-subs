@@ -1,29 +1,36 @@
-$(document).ready(function(e) {
-    $(document).on('keyup', function(e) {
-        if (e.which === 32/*space*/) {
-            showOrHideSubs(false);
+function waitForElement(className, callback) {
+    const checkExist = setInterval(() => {
+        const elements = document.querySelectorAll(`.${className}`);
+        if (elements.length > 0) {
+            clearInterval(checkExist);
+            callback(elements);
         }
-    });
+    }, 100/*check every 100ms*/);
+}
 
+function handlePlay() {
+    RecentSubsExt.Controller.onPlay();
+    waitForElement('vjs-paused', (elements) => {
+        handlePause();
+    });
+}
+
+function handlePause() {
+    RecentSubsExt.Controller.onPause();
+    waitForElement('vjs-playing', (elements) => {
+        handlePlay();
+    });
+}
+
+$(document).ready(function(e) {
     $(document).on('keydown', function(e) {
         if (e.shiftKey && e.which === 83/*shift+s*/) {
             RecentSubsExt.View.toggleExtSubs();
         }
     });
 
-    $(document).on('mouseup', function(e) {
-        showOrHideSubs(true);
-    });
+    handlePlay();
 })
-
-function showOrHideSubs(inversed) {
-    var paused = $('.vjs-paused').get(0) != null;
-    if (paused && !inversed || !paused && inversed) {
-        RecentSubsExt.Controller.onPause();
-    } else {
-        RecentSubsExt.Controller.onPlay();
-    }
-}
 
 var RecentSubsExt = {
     Model: {

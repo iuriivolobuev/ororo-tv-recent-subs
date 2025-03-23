@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "version": "1.16",
+  "version": "1.17",
   "name": "Say NO to subtitles! (ororo.tv)",
   "short_name": "ororo-recent-subs",
   "description": "Shows last dialogs when pausing a video at https://ororo.tv/.",
